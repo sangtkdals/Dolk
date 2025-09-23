@@ -1,7 +1,15 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\main",
+    "\\src\\main\\webapp",
+    "\\src\\main\\webapp\\dolk",
+    "\\src\\main\\webapp\\dolk\\board",
+    "\\src\\main\\webapp\\dolk\\board\\common",
+    "\\src\\main\\webapp\\dolk\\liveservice",
+    "\\src\\main\\webapp\\dolk\\member",
+    "\\src\\main\\webapp\\dolk\\news"
   ],
-  "SelectedNode": "\\C:\\GitProj\\Dolk",
   "PreviewInSolutionExplorer": false
 }
