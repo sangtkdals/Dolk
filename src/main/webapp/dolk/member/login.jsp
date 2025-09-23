@@ -5,8 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dolk 로그인</title>
-    <link rel="stylesheet" href="css/login.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Assets 스타일 참조 -->
+    <link rel="stylesheet" href="../assets/fonts/fonts.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/buttons.css">
+    <link rel="stylesheet" href="../assets/css/gray.css">
+    
+    <!-- 로그인 전용 스타일 -->
+    <link rel="stylesheet" href="../assets/css/login.css">
 </head>
 <body>
     <div class="login-container">
@@ -44,15 +51,17 @@
             
             <div class="social-login">
                 <button class="social-btn google-btn" onclick="socialLogin('google')">
-                    <img src="images/google-icon.png" alt="Google" class="social-icon">
+                    <img src="../assets/img/icons/social/google-plus.png" alt="Google" class="social-icon">
                 </button>
                 <button class="social-btn naver-btn" onclick="socialLogin('naver')">
-                    <img src="images/naver-icon.png" alt="Naver" class="social-icon">
+                    <img src="../assets/img/icons/social/facebook.png" alt="Naver" class="social-icon">
                 </button>
             </div>
         </div>
     </div>
     
-    <script src="js/login.js"></script>
+    <!-- Assets 스크립트 참조 -->
+    <script src="../assets/js/jquery-1.10.2.min.js"></script>
+    <script src="../assets/js/scripts.js"></script>
 </body>
 </html>
