@@ -17,17 +17,8 @@
     <link rel="stylesheet" href="../assets/css/home.css">
 </head>
 <body>
-    <!-- 헤더 - 기존 nav 스타일 활용 -->
-    <header class="header">
-        <div class="header-content">
-            <div class="nav-logo">
-                <a href="home.jsp" class="logo">Dolk</a>
-            </div>
-            <div class="nav-links">
-                <a href="../member/login.jsp" class="login-btn">로그인</a>
-            </div>
-        </div>
-    </header>
+    <!-- 공통 헤더 포함 -->
+    <%@ include file="../common/header.jsp" %>
     
     <!-- 메인 컨텐츠 -->
     <main class="main-content">
