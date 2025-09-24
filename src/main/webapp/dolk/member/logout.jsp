@@ -3,6 +3,6 @@
 	// Invalidate all session data and redirect to main page
 	session.invalidate();
 	String contextPath = request.getContextPath();
-	response.sendRedirect(contextPath + "/dolk/assets/main.jsp");
+	response.sendRedirect(contextPath + "/Home.jsp");
 %>
 
