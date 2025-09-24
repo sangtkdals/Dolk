@@ -4,21 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dolk 로그인</title>
-    
-    <!-- Assets 스타일 참조 -->
-    <link rel="stylesheet" href="../assets/fonts/fonts.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/buttons.css">
-    <link rel="stylesheet" href="../assets/css/gray.css">
-    
-    <!-- 로그인 전용 스타일 -->
-    <link rel="stylesheet" href="../assets/css/login.css">
+
+    <title>로그인</title>
+    <link rel="stylesheet" href="css/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
+    <%@ include file="../common/header.jsp" %>
     <div class="login-container">
         <div class="login-panel">
-            <h1 class="login-title">Dolk 로그인</h1>
+            <h1></h1>
             
             <form id="loginForm" class="login-form" action="loginProcess.jsp" method="post">
                 <div class="input-group">
@@ -32,7 +28,7 @@
                 </div>
                 
                 <div class="login-options">
-                    <a href="findAccount.jsp" class="find-account">아이디/비밀번호 찾기</a>
+                    <a href="findId.jsp" class="find-account">아이디/비밀번호 찾기</a>
                     <label class="keep-login">
                         <input type="checkbox" id="keepLogin" name="keepLogin">
                         <span class="checkmark"></span>
