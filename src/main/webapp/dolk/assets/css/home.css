@@ -122,7 +122,7 @@ a, a:hover, a:focus {
     width: 500%;
     height: 100%;
     display: flex;
-    animation: slide 25s infinite;
+    transition: transform 0.5s ease-in-out;
 }
 
 .slide {
@@ -179,35 +179,6 @@ a, a:hover, a:focus {
     background: rgba(70, 76, 92, 0.5);
 }
 
-@keyframes slide {
-    0% {
-        transform: translateX(0);
-    }
-    20% {
-        transform: translateX(0);
-    }
-    25% {
-        transform: translateX(-20%);
-    }
-    45% {
-        transform: translateX(-20%);
-    }
-    50% {
-        transform: translateX(-40%);
-    }
-    70% {
-        transform: translateX(-40%);
-    }
-    75% {
-        transform: translateX(-60%);
-    }
-    95% {
-        transform: translateX(-60%);
-    }
-    100% {
-        transform: translateX(-80%);
-    }
-}
 
 /* 슬라이드 표시자 - 기존 review pagination 스타일 활용 */
 .slide-indicators {
@@ -231,6 +202,9 @@ a, a:hover, a:focus {
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
+    pointer-events: auto;
+    z-index: 10;
+    user-select: none;
 }
 
 .indicator:hover {

@@ -193,7 +193,8 @@
         let currentSlideIndex = 0;
         let isAutoPlay = true;
         let autoPlayInterval;
-        let slideTransitionInterval;
+        let isTransitioning = false;
+        const totalSlides = 5;
         
         // 슬라이드 표시자 업데이트
         function updateIndicators(slideIndex) {
@@ -203,10 +204,11 @@
             });
         }
         
-        // 슬라이드 이동 함수
+        // 슬라이드 이동 함수 (애니메이션 포함)
         function goToSlide(slideIndex, isManual = false) {
+            if (isTransitioning) return; // 전환 중이면 무시
+            
             const slider = document.querySelector('.slider');
-            const totalSlides = document.querySelectorAll('.slide').length;
             
             // 인덱스 범위 체크
             if (slideIndex < 0) slideIndex = totalSlides - 1;
@@ -215,18 +217,37 @@
             // 수동 클릭인 경우 자동 재생 일시 정지
             if (isManual) {
                 stopAutoPlay();
+                // 수동 클릭 후 5초 후에 자동 재생 재개
                 setTimeout(() => {
                     startAutoPlay();
-                }, 3000); // 3초 후 자동 재생 재개
+                }, 5000);
             }
             
-            // 슬라이드 이동
-            slider.style.animation = 'none';
+            // 전환 시작
+            isTransitioning = true;
+            
+            // 슬라이드 이동 (CSS transition으로 부드러운 전환)
             slider.style.transform = `translateX(-${slideIndex * 20}%)`;
             
             // 표시자 업데이트
             updateIndicators(slideIndex);
             currentSlideIndex = slideIndex;
+            
+            // 전환 완료 후 플래그 해제
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 500); // CSS transition 시간과 동일
+        }
+        
+        // 다음 슬라이드로 이동
+        function nextSlide() {
+            if (isTransitioning) return;
+            
+            let nextIndex = currentSlideIndex + 1;
+            if (nextIndex >= totalSlides) {
+                nextIndex = 0; // 첫 번째 슬라이드로 순환
+            }
+            goToSlide(nextIndex);
         }
         
         // 자동 재생 시작
@@ -234,11 +255,10 @@
             if (autoPlayInterval) clearInterval(autoPlayInterval);
             
             autoPlayInterval = setInterval(() => {
-                if (isAutoPlay) {
-                    currentSlideIndex++;
-                    goToSlide(currentSlideIndex);
+                if (isAutoPlay && !isTransitioning) {
+                    nextSlide();
                 }
-            }, 5000);
+            }, 5000); // 5초마다 슬라이드 변경
         }
         
         // 자동 재생 정지
@@ -255,19 +275,37 @@
             startAutoPlay();
         }
         
-        // 슬라이드 표시자 클릭 이벤트
+        // 페이지 로드 시 초기화
         document.addEventListener('DOMContentLoaded', function() {
+            // 슬라이드 초기화
+            const slider = document.querySelector('.slider');
             const indicators = document.querySelectorAll('.indicator');
+            const sliderContainer = document.querySelector('.slider-container');
             
+            // 초기 슬라이드 위치 설정
+            slider.style.transform = 'translateX(0%)';
+            updateIndicators(0); // 첫 번째 표시자 활성화
+            
+            // 슬라이드 표시자 클릭 이벤트
             indicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => {
-                    goToSlide(index, true); // 수동 클릭으로 표시
+                // 클릭 이벤트
+                indicator.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    if (isTransitioning) return; // 전환 중이면 무시
+                    
+                    goToSlide(index, true);
                 });
                 
-                // 키보드 접근성 추가
-                indicator.addEventListener('keydown', (e) => {
+                // 키보드 접근성
+                indicator.addEventListener('keydown', function(e) {
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
+                        e.stopPropagation();
+                        
+                        if (isTransitioning) return; // 전환 중이면 무시
+                        
                         goToSlide(index, true);
                     }
                 });
@@ -277,13 +315,10 @@
             startAutoPlay();
             
             // 슬라이드 컨테이너에 마우스 오버 시 자동 재생 정지
-            const sliderContainer = document.querySelector('.slider-container');
             sliderContainer.addEventListener('mouseenter', stopAutoPlay);
             sliderContainer.addEventListener('mouseleave', resumeAutoPlay);
-        });
-        
-        // 뉴스 탭 기능
-        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 뉴스 탭 기능
             const newsTabs = document.querySelectorAll('.news-tab');
             const newsLists = document.querySelectorAll('.news-list');
             
