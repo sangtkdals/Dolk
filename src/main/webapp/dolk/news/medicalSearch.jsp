@@ -38,7 +38,7 @@
 	
 		<div class="search_box">
 			<form onsubmit="searchPlaces(); return false;">
-				<input type="text" id="keyword" size="25" placeholder="예: 부산시청 근처 내과">
+				<input type="text" id="keyword" size="25" placeholder="예: 동의대학교 근처 내과">
 				<button type="submit">검색</button>
 			</form>
 		</div>
@@ -49,8 +49,8 @@
 	<script>
 		var mapContainer = document.getElementById('map'); 
 		var mapOption = { 
-		    center: new kakao.maps.LatLng(35.1795543, 129.0756416), // 지도의 중심좌표 (부산시청)
-		    level: 5 
+			    center: new kakao.maps.LatLng(35.1417, 129.0343), // 지도의 중심좌표 (동의대학교 가야캠퍼스)
+			    level: 4
 		};
 		var map = new kakao.maps.Map(mapContainer, mapOption); 
 		var ps = new kakao.maps.services.Places();  
