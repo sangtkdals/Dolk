@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/buttons.css">
     <link rel="stylesheet" href="../assets/css/gray.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
 
 </head>
