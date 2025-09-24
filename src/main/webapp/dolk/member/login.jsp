@@ -25,7 +25,7 @@
                 </div>
                 
                 <div class="login-options">
-                    <a href="findAccount.jsp" class="find-account">아이디/비밀번호 찾기</a>
+                    <a href="findId.jsp" class="find-account">아이디/비밀번호 찾기</a>
                     <label class="keep-login">
                         <input type="checkbox" id="keepLogin" name="keepLogin">
                         <span class="checkmark"></span>
