@@ -20,7 +20,7 @@
 </style>
 
 <div class="header-bar">
-	<div class="header-logo" onclick="location.href='<%=contextPath%>/index.jsp'">Dolk</div>
+	<div class="header-logo" onclick="location.href='<%=contextPath%>/Home.jsp'">Dolk</div>
 	<div class="header-right">
 		<% if (userName == null || userName.trim().isEmpty()) { %>
 			<a class="header-action" href="<%=contextPath%>/dolk/member/login.jsp">로그인</a>
