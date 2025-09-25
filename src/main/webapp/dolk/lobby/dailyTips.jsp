@@ -2,6 +2,3 @@
 <%
 	
 %>
-<html>
-test
-</html>

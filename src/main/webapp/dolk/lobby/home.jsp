@@ -30,27 +30,27 @@
                 <div class="slider">
                     <div class="slide">
                         <div class="slide-overlay">
-                            <span>이미지 1</span>
+                            <span>건강한 생활</span>
                         </div>
                     </div>
                     <div class="slide">
                         <div class="slide-overlay">
-                            <span>이미지 2</span>
+                            <span>의료 서비스</span>
                         </div>
                     </div>
                     <div class="slide">
                         <div class="slide-overlay">
-                            <span>이미지 3</span>
+                            <span>전문 진료</span>
                         </div>
                     </div>
                     <div class="slide">
                         <div class="slide-overlay">
-                            <span>이미지 4</span>
+                            <span>건강 관리</span>
                         </div>
                     </div>
                     <div class="slide">
                         <div class="slide-overlay">
-                            <span>이미지 5</span>
+                            <span>의료 혁신</span>
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
             <div class="right-panel">
                 <div class="panel-header">
                     <h2 class="panel-title">Daily Tips</h2>
-                    <a href="../news/dailyTips.jsp" class="more-link">더보기</a>
+                    <a href="dailyTips.jsp" class="more-link">더보기</a>
                 </div>
                 <div class="panel-content">
                     <div class="tips-list">
@@ -173,6 +173,24 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- 게시판 접근 섹션 -->
+            <div class="board-access-section">
+                <div class="board-container">
+                    <div class="board-box">
+                        <div class="board-icon">💬</div>
+                        <h3 class="board-title">자유게시판</h3>
+                        <p class="board-description">자유롭게 의견을 나누고 정보를 공유하는 공간입니다.</p>
+                        <a href="../board/common/commonList.jsp" class="board-link">게시판 보기</a>
+                    </div>
+                    <div class="board-box">
+                        <div class="board-icon">❓</div>
+                        <h3 class="board-title">Q&A 게시판</h3>
+                        <p class="board-description">건강과 의료에 대한 질문과 답변을 주고받는 공간입니다.</p>
+                        <a href="../board/qna/qnaList.jsp" class="board-link">Q&A 보기</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     
@@ -183,10 +201,11 @@
     <script>
         // 슬라이드 관련 변수
         let currentSlideIndex = 0;
-        let isAutoPlay = true;
-        let autoPlayInterval;
         let isTransitioning = false;
+        let autoPlayInterval;
         const totalSlides = 5;
+        const slideDuration = 5000; // 5초
+        const transitionDuration = 200; // 0.2초 (부드러운 전환)
         
         // 슬라이드 표시자 업데이트
         function updateIndicators(slideIndex) {
@@ -196,50 +215,98 @@
             });
         }
         
-        // 슬라이드 이동 함수 (애니메이션 포함)
-        function goToSlide(slideIndex, isManual = false) {
-            if (isTransitioning) return; // 전환 중이면 무시
-            
-            const slider = document.querySelector('.slider');
-            
-            // 인덱스 범위 체크
-            if (slideIndex < 0) slideIndex = totalSlides - 1;
-            if (slideIndex >= totalSlides) slideIndex = 0;
-            
-            // 수동 클릭인 경우 자동 재생 일시 정지
-            if (isManual) {
-                stopAutoPlay();
-                // 수동 클릭 후 5초 후에 자동 재생 재개
-                setTimeout(() => {
-                    startAutoPlay();
-                }, 5000);
-            }
-            
-            // 전환 시작
-            isTransitioning = true;
-            
-            // 슬라이드 이동 (CSS transition으로 부드러운 전환)
-            slider.style.transform = `translateX(-${slideIndex * 20}%)`;
-            
-            // 표시자 업데이트
-            updateIndicators(slideIndex);
-            currentSlideIndex = slideIndex;
-            
-            // 전환 완료 후 플래그 해제
-            setTimeout(() => {
-                isTransitioning = false;
-            }, 500); // CSS transition 시간과 동일
+        // 슬라이드 활성화/비활성화
+        function setActiveSlide(slideIndex) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === slideIndex);
+            });
         }
         
-        // 다음 슬라이드로 이동
-        function nextSlide() {
+        // 슬라이드 이동 함수 (순차적 전환)
+        function goToSlide(targetIndex, isManual = false) {
             if (isTransitioning) return;
             
-            let nextIndex = currentSlideIndex + 1;
-            if (nextIndex >= totalSlides) {
-                nextIndex = 0; // 첫 번째 슬라이드로 순환
+            // 인덱스 범위 체크
+            if (targetIndex < 0) targetIndex = totalSlides - 1;
+            if (targetIndex >= totalSlides) targetIndex = 0;
+            
+            // 현재 인덱스와 목표 인덱스가 같으면 무시
+            if (currentSlideIndex === targetIndex) return;
+            
+            isTransitioning = true;
+            
+            // 순차적 전환 로직
+            if (isManual) {
+                // 수동 클릭 시 순차적으로 전환
+                const direction = getDirection(currentSlideIndex, targetIndex);
+                animateSequentialTransition(targetIndex, direction);
+            } else {
+                // 자동 재생 시 다음 슬라이드로
+                const nextIndex = (currentSlideIndex + 1) % totalSlides;
+                animateSequentialTransition(nextIndex, 1);
             }
-            goToSlide(nextIndex);
+        }
+        
+        // 전환 방향 계산
+        function getDirection(from, to) {
+            const forward = (to - from + totalSlides) % totalSlides;
+            const backward = (from - to + totalSlides) % totalSlides;
+            return forward <= backward ? 1 : -1;
+        }
+        
+        // 순차적 전환 애니메이션
+        function animateSequentialTransition(targetIndex, direction) {
+            // 전환할 단계 수 계산
+            let steps;
+            if (direction === 1) {
+                // 순방향
+                steps = (targetIndex - currentSlideIndex + totalSlides) % totalSlides;
+            } else {
+                // 역방향
+                steps = (currentSlideIndex - targetIndex + totalSlides) % totalSlides;
+            }
+            
+            if (steps === 0) {
+                isTransitioning = false;
+                return;
+            }
+            
+            const stepDuration = transitionDuration / steps;
+            let stepCount = 0;
+            let currentIndex = currentSlideIndex;
+            
+            // 단계별 전환
+            function nextStep() {
+                if (stepCount >= steps) {
+                    // 전환 완료
+                    isTransitioning = false;
+                    currentSlideIndex = targetIndex;
+                    updateIndicators(currentSlideIndex);
+                    return;
+                }
+                
+                // 현재 슬라이드 비활성화
+                setActiveSlide(currentIndex);
+                
+                // 다음 인덱스 계산
+                if (direction === 1) {
+                    currentIndex = (currentIndex + 1) % totalSlides;
+                } else {
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                }
+                
+                // 다음 슬라이드 활성화
+                setTimeout(() => {
+                    setActiveSlide(currentIndex);
+                    stepCount++;
+                    
+                    // 다음 단계로
+                    setTimeout(nextStep, stepDuration);
+                }, 50); // 약간의 지연으로 부드러운 전환
+            }
+            
+            nextStep();
         }
         
         // 자동 재생 시작
@@ -247,45 +314,36 @@
             if (autoPlayInterval) clearInterval(autoPlayInterval);
             
             autoPlayInterval = setInterval(() => {
-                if (isAutoPlay && !isTransitioning) {
-                    nextSlide();
+                if (!isTransitioning) {
+                    goToSlide((currentSlideIndex + 1) % totalSlides);
                 }
-            }, 5000); // 5초마다 슬라이드 변경
+            }, slideDuration);
         }
         
         // 자동 재생 정지
         function stopAutoPlay() {
-            isAutoPlay = false;
             if (autoPlayInterval) {
                 clearInterval(autoPlayInterval);
+                autoPlayInterval = null;
             }
-        }
-        
-        // 자동 재생 재개
-        function resumeAutoPlay() {
-            isAutoPlay = true;
-            startAutoPlay();
         }
         
         // 페이지 로드 시 초기화
         document.addEventListener('DOMContentLoaded', function() {
-            // 슬라이드 초기화
-            const slider = document.querySelector('.slider');
             const indicators = document.querySelectorAll('.indicator');
             const sliderContainer = document.querySelector('.slider-container');
             
-            // 초기 슬라이드 위치 설정
-            slider.style.transform = 'translateX(0%)';
-            updateIndicators(0); // 첫 번째 표시자 활성화
+            // 초기 슬라이드 위치 설정 (첫 번째 이미지)
+            setActiveSlide(0);
+            updateIndicators(0);
             
             // 슬라이드 표시자 클릭 이벤트
             indicators.forEach((indicator, index) => {
-                // 클릭 이벤트
                 indicator.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
                     
-                    if (isTransitioning) return; // 전환 중이면 무시
+                    if (isTransitioning) return;
                     
                     goToSlide(index, true);
                 });
@@ -296,7 +354,7 @@
                         e.preventDefault();
                         e.stopPropagation();
                         
-                        if (isTransitioning) return; // 전환 중이면 무시
+                        if (isTransitioning) return;
                         
                         goToSlide(index, true);
                     }
@@ -306,9 +364,9 @@
             // 자동 재생 시작
             startAutoPlay();
             
-            // 슬라이드 컨테이너에 마우스 오버 시 자동 재생 정지
+            // 슬라이드 컨테이너에 마우스 오버 시 자동 재생 정지 (선택사항)
             sliderContainer.addEventListener('mouseenter', stopAutoPlay);
-            sliderContainer.addEventListener('mouseleave', resumeAutoPlay);
+            sliderContainer.addEventListener('mouseleave', startAutoPlay);
             
             // 뉴스 탭 기능
             const newsTabs = document.querySelectorAll('.news-tab');
@@ -332,6 +390,20 @@
                     if (targetList) {
                         targetList.style.display = 'block';
                     }
+                });
+            });
+            
+            // 게시판 박스 호버 효과
+            const boardBoxes = document.querySelectorAll('.board-box');
+            boardBoxes.forEach(box => {
+                box.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.15)';
+                });
+                
+                box.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
                 });
             });
         });
