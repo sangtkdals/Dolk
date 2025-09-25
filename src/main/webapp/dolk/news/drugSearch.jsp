@@ -13,12 +13,15 @@
         </c:otherwise>
     </c:choose>
 
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/dolk/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/dolk/assets/css/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/dolk/assets/css/form-elements.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/dolk/assets/css/select2.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/dolk/assets/css/search.css">
 </head>
 <body>
+    <%@ include file="../common/header.jsp" %>
+
     <div class="search-container">
         <c:choose>
             <c:when test="${not empty keyword}">
@@ -26,7 +29,7 @@
             </c:when>
             <c:otherwise>
                 <h2>의약품 통합 검색</h2>
-                <p>검색 유형을 선택하고 키워드를 입력하세요. (예: 두통, 알레르기)</p>
+                <p>검색 유형을 선택하고 키워드를 입력하세요. (예: 두통, 타이레놀)</p>
             </c:otherwise>
         </c:choose>
 
@@ -37,7 +40,6 @@
             </select>
             <input type="text" name="keyword" required value="${keyword}" placeholder="검색어를 입력하세요">
             <button type="submit">검색</button>
-            
             <a href="${pageContext.request.contextPath}/dolk/news/drugSearch.jsp" class="reset-btn">초기화</a>
         </form>
         

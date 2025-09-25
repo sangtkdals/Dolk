@@ -1,10 +1,9 @@
 /* src/main/webapp/dolk/assets/css/search.css */
 
 .search-container {
-    padding: 45px 0 70px 0;
+    padding: 120px 0 70px 0;
     text-align: center;
 }
-
 .search-container h2 {
 	font-family: 'signikabold', sans-serif;
 	font-size: 60px;
