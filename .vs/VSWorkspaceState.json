@@ -3,13 +3,14 @@
     "",
     "\\src",
     "\\src\\main",
+    "\\src\\main\\java",
+    "\\src\\main\\java\\dolk",
+    "\\src\\main\\java\\dolk\\dao",
+    "\\src\\main\\java\\dolk\\service",
     "\\src\\main\\webapp",
     "\\src\\main\\webapp\\dolk",
-    "\\src\\main\\webapp\\dolk\\board",
-    "\\src\\main\\webapp\\dolk\\board\\common",
-    "\\src\\main\\webapp\\dolk\\liveservice",
-    "\\src\\main\\webapp\\dolk\\member",
-    "\\src\\main\\webapp\\dolk\\news"
+    "\\src\\main\\webapp\\dolk\\lobby"
   ],
+  "SelectedNode": "\\src\\main\\java\\dolk\\bean\\drugBean.java",
   "PreviewInSolutionExplorer": false
 }
