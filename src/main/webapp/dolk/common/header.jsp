@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="../assets/css/style.css">
 <link rel="stylesheet" href="../assets/css/buttons.css">
 <link rel="stylesheet" href="../assets/css/gray.css">
+<link rel="stylesheet" href="../assets/css/header.css">
 <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
 
 <style>
@@ -142,26 +143,6 @@
 		color: #9ccbc0;
 	}
 
-	/* 반응형 디자인 */
-	@media (max-width: 991px) {
-		.header {
-			position: static;
-		}
-		
-		.header-content {
-			padding: 0 1rem;
-			flex-direction: column;
-			gap: 15px;
-		}
-		
-		.nav-logo, .nav-links {
-			text-align: center;
-		}
-		
-		.logo {
-			font-size: 28px;
-		}
-	}
 </style>
 
 <header class="header">
