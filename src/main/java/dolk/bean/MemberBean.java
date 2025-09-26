@@ -2,54 +2,54 @@ package dolk.bean;
 
 public class MemberBean {
 
-	private String mid;
-	private String mpwd; 
-	private String mname;
-	private String memail;
-	private int mnum;
-	private String mbirth;
-	private int mage;
+	private String m_id;
+	private String m_pwd; 
+	private String m_name;
+	private String m_email;
+	private int m_num;
+	private String m_birth;
+	private int m_age;
 	
-	public String getMid() {
-		return mid;
+	public String getM_id() {
+		return m_id;
 	}
-	public void setMid(String mid) {
-		this.mid = mid;
+	public void setM_id(String m_id) {
+		this.m_id = m_id;
 	}
-	public String getMpwd() {
-		return mpwd;
+	public String getM_pwd() {
+		return m_pwd;
 	}
-	public void setMpwd(String mpwd) {
-		this.mpwd = mpwd;
+	public void setM_pwd(String m_pwd) {
+		this.m_pwd = m_pwd;
 	}
-	public String getMname() {
-		return mname;
+	public String getM_name() {
+		return m_name;
 	}
-	public void setMname(String mname) {
-		this.mname = mname;
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
 	}
-	public String getMemail() {
-		return memail;
+	public String getM_email() {
+		return m_email;
 	}
-	public void setMemail(String memail) {
-		this.memail = memail;
+	public void setM_email(String m_email) {
+		this.m_email = m_email;
 	}
-	public int getMnum() {
-		return mnum;
+	public int getM_num() {
+		return m_num;
 	}
-	public void setMnum(int mnum) {
-		this.mnum = mnum;
+	public void setM_num(int m_num) {
+		this.m_num = m_num;
 	}
-	public String getMbirth() {
-		return mbirth;
+	public String getM_birth() {
+		return m_birth;
 	}
-	public void setMbirth(String mbirth) {
-		this.mbirth = mbirth;
+	public void setM_birth(String m_birth) {
+		this.m_birth = m_birth;
 	}
-	public int getMage() {
-		return mage;
+	public int getM_age() {
+		return m_age;
 	}
-	public void setMage(int mage) {
-		this.mage = mage;
+	public void setM_age(int m_age) {
+		this.m_age = m_age;
 	}
 }

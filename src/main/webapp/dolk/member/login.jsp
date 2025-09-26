@@ -233,15 +233,15 @@
                 <p>Dolk에 오신 것을 환영합니다</p>
             </div>
             
-            <form id="loginForm" class="login-form" action="loginProcess.jsp" method="post">
+            <form id="loginForm" class="login-form" action="<%=request.getContextPath()%>/loginServlet" method="post">
                 <div class="form-group">
                     <label for="userId">아이디</label>
-                    <input type="text" id="userId" name="userId" required>
+                    <input type="text" id="userId" name="m_id" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="password">비밀번호</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" name="m_pwd" required>
                 </div>
                 
                 <div class="login-options">

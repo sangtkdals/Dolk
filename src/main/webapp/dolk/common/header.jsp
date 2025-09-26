@@ -1,9 +1,15 @@
+<%@page import="dolk.bean.MemberBean"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
 	String contextPath = request.getContextPath();
-	String userName = (String) session.getAttribute("userName");
-%>
 
+	//세션에서 member 객체 가져오기
+	MemberBean member = (MemberBean) session.getAttribute("member");
+	String userId = null;
+	if (member != null) {
+	    userId = member.getM_id();  //MemberBean의 getter 사용
+	}
+%>
 <!-- Assets 스타일 참조 -->
 <link rel="stylesheet" href="../assets/fonts/fonts.css">
 <link rel="stylesheet" href="../assets/css/style.css">
@@ -151,14 +157,14 @@
 			<a href="<%=contextPath%>/dolk/lobby/home.jsp" class="logo">Dolk</a>
 		</div>
 		<div class="nav-links">
-			<% if (userName == null || userName.trim().isEmpty()) { %>
+			<% if (userId == null || userId.trim().isEmpty()) { %>
 				<a href="<%=contextPath%>/dolk/member/login.jsp" class="login-btn">로그인</a>
 			<% } else { %>
 				<div class="user-info" id="headerUserTrigger">
-					<%= userName %>님 ▼
+					<%= userId %>님 ▼
 				</div>
 				<div class="user-panel" id="userPanel">
-					<div class="user-name"><%= userName %></div>
+					<div class="user-name"><%= userId %></div>
 					<a class="btn" href="<%=contextPath%>/dolk/member/myPage.jsp">내정보 관리</a>
 					<a class="btn" href="<%=contextPath%>/dolk/member/logout.jsp">로그아웃</a>
 				</div>

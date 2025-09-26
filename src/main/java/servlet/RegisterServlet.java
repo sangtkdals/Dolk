@@ -31,22 +31,22 @@ public class RegisterServlet extends HttpServlet {
 
         // 📌 회원가입 폼에서 넘어온 값 받기
         MemberBean member = new MemberBean();
-        member.setMid(request.getParameter("mid"));
-        member.setMpwd(request.getParameter("mpwd"));
-        member.setMname(request.getParameter("mname"));
-        member.setMemail(request.getParameter("memail"));
+        member.setM_id(request.getParameter("m_id"));
+        member.setM_pwd(request.getParameter("m_pwd"));
+        member.setM_name(request.getParameter("m_name"));
+        member.setM_email(request.getParameter("m_email"));
 
         // 숫자값은 Null 체크 후 파싱
-        String numParam = request.getParameter("mnum");
+        String numParam = request.getParameter("m_num");
         if (numParam != null && !numParam.isEmpty()) {
-            member.setMnum(Integer.parseInt(numParam));
+            member.setM_num(Integer.parseInt(numParam));
         }
 
-        member.setMbirth(request.getParameter("mbirth"));
+        member.setM_birth(request.getParameter("m_birth"));
 
-        String ageParam = request.getParameter("mage");
+        String ageParam = request.getParameter("m_age");
         if (ageParam != null && !ageParam.isEmpty()) {
-            member.setMage(Integer.parseInt(ageParam));
+            member.setM_age(Integer.parseInt(ageParam));
         }
 
         Connection con = null;
@@ -58,13 +58,13 @@ public class RegisterServlet extends HttpServlet {
             String sql = "INSERT INTO member (m_id, m_pwd, m_name, m_email, m_num, m_birth, m_age) "
                        + "VALUES (?, ?, ?, ?, ?, ?, ?)";
             pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, member.getMid());
-            pstmt.setString(2, member.getMpwd());   // ⚠️ 실제 운영에서는 반드시 암호화 필요!
-            pstmt.setString(3, member.getMname());
-            pstmt.setString(4, member.getMemail());
-            pstmt.setLong(5, member.getMnum());     // BIGINT 컬럼이므로 setLong 권장
-            pstmt.setString(6, member.getMbirth()); // DATE 변환 필요 시 java.sql.Date로 처리 가능
-            pstmt.setInt(7, member.getMage());
+            pstmt.setString(1, member.getM_id());
+            pstmt.setString(2, member.getM_pwd());   // ⚠️ 실제 운영에서는 반드시 암호화 필요!
+            pstmt.setString(3, member.getM_name());
+            pstmt.setString(4, member.getM_email());
+            pstmt.setLong(5, member.getM_num());     // BIGINT 컬럼이므로 setLong 권장
+            pstmt.setString(6, member.getM_birth()); // DATE 변환 필요 시 java.sql.Date로 처리 가능
+            pstmt.setInt(7, member.getM_age());
 
             int result = pstmt.executeUpdate();
             success = (result > 0);
