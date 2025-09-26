@@ -1,7 +1,16 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\main",
+    "\\src\\main\\java",
+    "\\src\\main\\java\\dolk",
+    "\\src\\main\\java\\dolk\\dao",
+    "\\src\\main\\java\\dolk\\service",
+    "\\src\\main\\webapp",
+    "\\src\\main\\webapp\\dolk",
+    "\\src\\main\\webapp\\dolk\\lobby"
   ],
-  "SelectedNode": "\\C:\\GitProj\\Dolk",
+  "SelectedNode": "\\src\\main\\java\\dolk\\bean\\drugBean.java",
   "PreviewInSolutionExplorer": false
 }
