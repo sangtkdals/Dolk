@@ -2,11 +2,11 @@ package dolk.bean;
 
 public class DrugBean {
 	
-	private int did;
-	private String dname;
+	private int did; // drug_id == d(drug) + @
+	private String dname; // drug_name == dname
 	private String manufacture;
 	private String description;
-	private String dimg;
+	private String dimg; // drug_img == dimg
 	
 	public int getId() {
 		return did;

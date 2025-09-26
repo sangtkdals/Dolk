@@ -2,13 +2,13 @@ package dolk.bean;
 
 public class MemberBean {
 
-	private String mid;
-	private String mpwd; 
-	private String mname;
-	private String memail;
-	private int mnum;
-	private String mbirth;
-	private int mage;
+	private String mid; // m_id == m(member) + @
+	private String mpwd; // m_pwd == mpwd
+	private String mname; // m_name == mname
+	private String memail; // m_email == memail
+	private int mnum; // m_num == m + num(주민번호)
+	private String mbirth; // m_birth == mbirth
+	private int mage; // m_age == mage
 	
 	public String getMid() {
 		return mid;

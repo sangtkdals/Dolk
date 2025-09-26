@@ -2,15 +2,15 @@ package dolk.bean;
 
 public class PostBean {
 	
-	private int pid;
-	private int bid;
-	private String aid;
-	private String cmd;
-	private String title;
-	private String visibility;
-	private int vcount;
-	private int lcount;
-	private int ccount;
+	private int pid; // post_id == p(post|게시글) + @
+	private int bid; // board_id == b(board|게시판) + @
+	private String mid;	// m_id == m(member|작성자) + @
+	private String contents; // content_md == contents (본문 내용)
+	private String title; // 제목
+	private String visibility; // 글 공개범위
+	private int vcount; // view_count == v(view|조회수) + @
+	private int lcount; // like_count == l(like|좋아요수) + @
+	private int ccount; // comment_count == c(comment|댓글수) + @
 	
 	public int getPid() {
 		return pid;
@@ -25,16 +25,16 @@ public class PostBean {
 		this.bid = bid;
 	}
 	public String getAid() {
-		return aid;
+		return mid;
 	}
 	public void setAid(String aid) {
-		this.aid = aid;
+		this.mid = aid;
 	}
 	public String getCmd() {
-		return cmd;
+		return contents;
 	}
 	public void setCmd(String cmd) {
-		this.cmd = cmd;
+		this.contents = cmd;
 	}
 	public String getTitle() {
 		return title;
