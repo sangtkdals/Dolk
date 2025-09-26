@@ -47,7 +47,7 @@ public class DrugSearchServlet extends HttpServlet {
 		request.setAttribute("drugList", drugList);
 		request.setAttribute("keyword", keyword); 
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("dolk/news/drugSearch.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("new_design/DrugSearchPage.jsp");
 		dispatcher.forward(request, response);
 	}
 

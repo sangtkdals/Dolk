@@ -7,6 +7,7 @@ public class PostBean {
 	private String aid;
 	private String cmd;
 	private String title;
+	private String content;
 	private String visibility;
 	private int vcount;
 	private int lcount;
@@ -41,6 +42,12 @@ public class PostBean {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
 	}
 	public String getVisibility() {
 		return visibility;
